@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Doll.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Player/Run0.png" type="Texture" id=2]
@@ -11,9 +11,10 @@
 [ext_resource path="res://Sprites/Player/Jump1.png" type="Texture" id=9]
 [ext_resource path="res://Sprites/Player/Jump3.png" type="Texture" id=10]
 [ext_resource path="res://JungleDirtTileset.tres" type="TileSet" id=11]
+[ext_resource path="res://WorldComplete.gd" type="Script" id=12]
+[ext_resource path="res://icon.png" type="Texture" id=13]
 
 [sub_resource type="SpriteFrames" id=1]
-
 animations = [ {
 "frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
 "loop": true,
@@ -37,61 +38,50 @@ animations = [ {
 } ]
 
 [sub_resource type="CapsuleShape2D" id=2]
-
-custom_solver_bias = 0.0
 radius = 13.5085
 height = 31.3228
 
-[node name="World" type="Node" index="0"]
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 32, 32 )
 
-[node name="Doll" type="KinematicBody2D" parent="." index="0"]
+[node name="World" type="Node"]
 
+[node name="MainCharacter" type="KinematicBody2D" parent="."]
 position = Vector2( 445.66, 267.434 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
 collision/safe_margin = 0.001
 script = ExtResource( 1 )
-_sections_unfolded = [ "collision" ]
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="doll_sprite" type="AnimatedSprite" parent="Doll" index="0"]
-
+[node name="doll_sprite" type="AnimatedSprite" parent="MainCharacter"]
 position = Vector2( 2, 1 )
 frames = SubResource( 1 )
 animation = "Idle"
-_sections_unfolded = [ "Transform" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Doll" index="1"]
-
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MainCharacter"]
 position = Vector2( 2.8678, 4.66037 )
 shape = SubResource( 2 )
-_sections_unfolded = [ "Transform" ]
 
-[node name="TileMap" type="TileMap" parent="." index="1"]
-
-mode = 0
+[node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 11 )
 cell_size = Vector2( 32, 32 )
-cell_quadrant_size = 16
-cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-cell_half_offset = 2
-cell_tile_origin = 0
-cell_y_sort = false
-cell_clip_uv = false
-collision_use_kinematic = false
-collision_friction = 1.0
-collision_bounce = 0.0
-collision_layer = 1
-collision_mask = 1
-occluder_light_mask = 1
 format = 1
 tile_data = PoolIntArray( 720917, 0, 0, 720918, 1, 0, 720919, 1, 0, 720920, 2, 0, 786453, 3, 0, 786454, 4, 0, 786455, 4, 0, 786456, 5, 0, 851989, 3, 0, 851990, 4, 0, 851991, 4, 0, 851992, 5, 0, 917509, 0, 0, 917510, 1, 0, 917511, 1, 0, 917512, 1, 0, 917513, 1, 0, 917514, 1, 0, 917515, 1, 0, 917516, 1, 0, 917517, 1, 0, 917518, 1, 0, 917519, 1, 0, 917520, 1, 0, 917521, 1, 0, 917522, 1, 0, 917523, 1, 0, 917524, 1, 0, 917525, 1, 0, 917526, 1, 0, 917527, 1, 0, 917528, 1, 0, 917529, 1, 0, 917530, 2, 0, 983045, 3, 0, 983046, 4, 0, 983047, 4, 0, 983048, 4, 0, 983049, 4, 0, 983050, 4, 0, 983051, 4, 0, 983052, 4, 0, 983053, 4, 0, 983054, 4, 0, 983055, 4, 0, 983056, 4, 0, 983057, 4, 0, 983058, 4, 0, 983059, 4, 0, 983060, 4, 0, 983061, 4, 0, 983062, 4, 0, 983063, 4, 0, 983064, 4, 0, 983065, 4, 0, 983066, 5, 0, 1048581, 3, 0, 1048582, 4, 0, 1048583, 4, 0, 1048584, 4, 0, 1048585, 4, 0, 1048586, 4, 0, 1048587, 4, 0, 1048588, 4, 0, 1048589, 4, 0, 1048590, 4, 0, 1048591, 4, 0, 1048592, 4, 0, 1048593, 4, 0, 1048594, 4, 0, 1048595, 4, 0, 1048596, 4, 0, 1048597, 4, 0, 1048598, 4, 0, 1048599, 4, 0, 1048600, 4, 0, 1048601, 4, 0, 1048602, 5, 0, 1114117, 6, 0, 1114118, 7, 0, 1114119, 7, 0, 1114120, 7, 0, 1114121, 7, 0, 1114122, 7, 0, 1114123, 7, 0, 1114124, 7, 0, 1114125, 7, 0, 1114126, 7, 0, 1114127, 7, 0, 1114128, 7, 0, 1114129, 7, 0, 1114130, 7, 0, 1114131, 7, 0, 1114132, 7, 0, 1114133, 7, 0, 1114134, 7, 0, 1114135, 7, 0, 1114136, 7, 0, 1114137, 7, 0, 1114138, 8, 0 )
-_sections_unfolded = [ "Cell", "Collision" ]
 __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 763.518, 319.093 )
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Area2D"]
+texture = ExtResource( 13 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 3 )
 

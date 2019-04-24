@@ -8,7 +8,6 @@ const JUMP_HEIGHT = -550
 var motion = Vector2() 
 
 func _physics_process(delta):
-	motion.y += GRAVITY
 	var friction = false
 	
 	if(Input.is_action_pressed("ui_right")):
@@ -34,6 +33,7 @@ func _physics_process(delta):
 			motion.x = lerp(motion.x, 0, 0.2)
 			
 	else:
+		motion.y += GRAVITY	
 		if (motion.y < 0):
 			$doll_sprite.play('Jump')
 		else:
